@@ -16,3 +16,20 @@ The rules are the same as the classic game:
 The computer chooses first; just follow the prompts.
 
 Built with Python 3.
+
+### Notes
+
+1. Show game instructions
+2. Computer picks a random option
+3. Computer gives prompt for player to pick an option:
+	- rock
+	- paper
+	- scissors
+4. Player picks option - via prompt
+5. Program matches the two options and parses:
+	- tie: no one wins
+	- computer wins: player loses a life
+	- player wins: computer loses a life
+6. Player lives reach 0: Game Over, You Lose
+7. Computer lives reach 0: Game Over, You Win!
+8. Player gets a virtual cookie
