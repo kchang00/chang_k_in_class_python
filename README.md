@@ -32,4 +32,11 @@ Built with Python 3.
 	- player wins: computer loses a life
 6. Player lives reach 0: Game Over, You Lose
 7. Computer lives reach 0: Game Over, You Win!
-8. Player gets a virtual cookie
+
+### Bugs fixed
+
+rock no longer beats paper
+scissor no longer beats rock
+game over loops run properly
+invalid choice is now triggered properly
+continue command when invalid choice entered runs properly
