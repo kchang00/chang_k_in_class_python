@@ -35,8 +35,8 @@ Built with Python 3.
 
 ### Bugs fixed
 
-rock no longer beats paper
-scissor no longer beats rock
-game over loops run properly
-invalid choice is now triggered properly
-continue command when invalid choice entered runs properly
+1. rock no longer beats paper
+2. scissor no longer beats rock
+3. game over loops run properly
+4. invalid choice is now triggered properly
+5. continue command when invalid choice entered runs properly
