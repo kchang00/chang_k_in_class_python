@@ -2,61 +2,134 @@
 # import the randow package so that we can generate random numbers
 from random import randint
 
+# life counter for player and computer
+playerLives = 3
+computerLives = 3
+
 # choices is an array => a container that can hold multiple items
 # arrays are 0 based => the first item is 0, the second is 1, etc.
 choices = ["Rock", "Paper", "Scissors"]
-player = False
+
+# game over variables
+computerLives <= 0
+playerLives <= 0
+
+
+# visual line break makes text easier to read
+line = "\n-------------------------------------\n"
+win = "- You win!"
+lose = "- You lose!"
 
 # make the computer choose a weapon from the choices array at random
-computer_choice = choices[randint(0,2)]
+computerChoice = choices[randint(0, 2)]
 
 # print the choice to the terminal window
-print("Computer chooses:", computer_choice)
+print(line)
+print("Welcome to Kayla's Rock, Paper, Scissors Game!")
+# put 'print("Computer chooses:", computerChoice)' here for testing
+# (no quotation marks)
+print(line)
 
 # set up our loop
-while player is False:
-	#set player to True by making a selection
-	print("Choose your weapon! (Case sensitive)")
-	print("Or Quit")
-	player = input("Rock, Paper, or Scissors?\n")
+while True:
 
-	print(player, "\n")
+    # check if player lives or computer lives are at 0 first
 
-	# check for a tie = choices are the same
-	if player == computer_choice:
-		print("Tie! You live to shoot another day.")
+    # player loses if player lives are 0
+    # Exits game (exits loop) or prompt to play again
+    if playerLives <= 0:
+        print("You lost 3 times! You LOSE! Game Over.\n")
+        print("Play Again?")
+        player = input("Yes or No?\n").capitalize()
+        if player == "Yes":
+            playerLives = 3
+            computerLives = 3
+            print(line)
+        elif player == "No":
+            print(line)
+            print("Thanks for playing!")
+            print(line)
+            break  # break exits the infinite loop
+        else:
+            print("\nThat's not a valid choice. Try checking your spelling.\n")
+            continue  # puts code back at top of loop
 
-	# check to see if the computer choice beats player choice or not
-	elif player == "Rock":
-		if computer_choice == "Paper":
-			# computer wins *sad face*
-			print("Paper covers Rock. You lose! Try again")
-		else:
-			# we win! such winning
-			print(player, "smashes", computer_choice, "You win!")
+    # player wins if computer lives are 0
+    elif computerLives <= 0:
+        print("You beat the computer 3 times! You WIN! Game Over.\n")
+        print("Play Again?")
+        player = input("Yes or No?\n").capitalize()
+        if player == "Yes":
+            playerLives = 3
+            computerLives = 3
+            print(line)
+        elif player == "No":
+            print(line)
+            print("Thanks for playing!")
+            print(line)
+            break
+        else:
+            print("\nThat's not a valid choice. Try checking your spelling.\n")
+            continue
 
-	elif player == "Paper":
-		if computer_choice == "Scissors":
-			print(computer_choice, "cut", player, "You lose!")
-		else:
-			print(player, "covers", computer_choice, "You win!")
+    # ask for player choice after verifying computer and player have 1 life
+    print("Your lives:", playerLives)
+    print("Computer lives:", computerLives)
+    print("\nChoose your weapon!\n")
+    player = input("Rock, Paper, or Scissors?\n").capitalize()
 
-	elif player == "Scissors":
-		if computer_choice == "Rock":
-			print(computer_choice, "smashes", player, "You lose!")
-		else:
-			print(player, "cut", computer_choice, "You win!")
+    # validates player input
+    # if not valid, restarts loop
+    if player != choices[0] and player != choices[1] \
+       and player != choices[2] and player != "Quit":
+        print("\nThat's not a valid choice. Try checking your spelling.\n")
+    else:
+        # prints selection
+        print(line)
+        print("You chose", player)
+        print("Computer chose", computerChoice)
 
-	elif player == "Quit":
-		exit ()
-	else:
-		print("That's not a valid choice... try checking your spelling\n")
+        # quit section runs before other options
+        if player == "Quit":
+            print(line)
+            print("Goodbye")
+            print(line)
+            exit()
 
-	player = False
-	computer_choice = choices[randint(0, 2)] 
+        # check for a tie = choices are the same
+        elif player == computerChoice:
+            print("Tie! You live to shoot another day.")
 
-# add player lives and computer lives somewhere (incrementing or decrementing lives + outputting message for those conditions)
-# type in win or lose variables for winning and losing 
-# have to type script to display the number of lives
-# final script to let the player quit or play again
+        # check to see if the computer choice beats player choice or not
+        elif player == "Rock":
+            if computerChoice == "Paper":
+                # computer wins *sad face*
+                print(computerChoice, "covers", player, lose)
+                # lose life counter
+                playerLives -= 1
 
+            else:
+                # we win! such winning
+                print(player, "smashes", computerChoice, win)
+                computerLives -= 1
+
+        elif player == "Paper":
+            if computerChoice == "Scissors":
+                print(computerChoice, "cuts", player, lose)
+                playerLives -= 1
+            else:
+                print(player, "covers", computerChoice, win)
+                computerLives -= 1
+
+        elif player == "Scissors":
+            if computerChoice == "Rock":
+                print(computerChoice, "smashes", player, lose)
+                playerLives -= 1
+            else:
+                print(player, "cut", computerChoice, win)
+                computerLives -= 1
+        print(line)
+
+    # re-picks computer choice
+    # without it, computer picks same weapon each time
+    computerChoice = choices[randint(0, 2)]
