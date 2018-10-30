@@ -23,3 +23,22 @@ def greetingsWithArgs(msg="a default message"):
 greetingsWithArgs("Hey! 'Sup!")
 greetingsWithArgs("Something completely different")
 greetingsWithArgs("Running yet again!")
+
+# variables and scope
+myNumberVariable = 10
+
+# returning values from functions (very powerful)
+
+
+def someMath(num1=2, num2=4):
+
+    myNumberVariable = num1 + num2
+
+    return num1 + num2
+
+
+sum = someMath()
+print("We are doing some math and getting", sum)
+
+sum = someMath(10, 15)
+print("another math operation with", sum, "as the result")
